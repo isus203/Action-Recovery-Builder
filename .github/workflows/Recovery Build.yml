@@ -27,10 +27,14 @@ on:
         description: 'REPONAME'
         required: true
         default: 'tecno_kh7n_twrp'
-      CIRCLE_PROJECT_USERNAME:
+      GitHubName:
         description: 'USERNAME'
         required: true
         default: 'isus203'
+      GitHubMail:
+        description: 'GitHubMail'
+        required: true
+        default: ''
 
 jobs:
   build:
@@ -71,6 +75,8 @@ jobs:
         mkdir workspace
         cd workspace
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
+        git config --global user.name "${{ github.event.inputs.GitHubName }}"
+        git config --global user.email "${{ github.event.inputs.GitHubMail }}"
         wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
         source build.sh
       id: pwd
