@@ -75,8 +75,8 @@ jobs:
         mkdir workspace
         cd workspace
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
-        git config --global user.name "${{ github.event.inputs.GitHubName }}"
-        git config --global user.email "${{ github.event.inputs.GitHubMail }}"
+        git config --global user.name "Nico170420"
+        git config --global user.email "b170420nc@gmail.com"
         wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
         source build.sh
       id: pwd
