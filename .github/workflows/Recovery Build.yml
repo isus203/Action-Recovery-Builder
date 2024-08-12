@@ -22,7 +22,7 @@ on:
       CODENAME:
         description: 'CODENAME'
         required: true
-        default: 'KI7'
+        default: 'KH7n'
       CIRCLE_PROJECT_REPONAME:
         description: 'REPONAME'
         required: true
