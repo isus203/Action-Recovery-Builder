@@ -82,7 +82,6 @@ jobs:
       run: |
         wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
         source build.sh
-      id: pwd
 
     - name: Building recovery
       run: |
