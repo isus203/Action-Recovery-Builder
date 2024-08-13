@@ -22,7 +22,7 @@ on:
       CODENAME:
         description: 'CODENAME'
         required: true
-        default: 'KI7'
+        default: 'KH7n'
       CIRCLE_PROJECT_REPONAME:
         description: 'REPONAME'
         required: true
@@ -80,7 +80,7 @@ jobs:
       
     - name: Initialize repo
       run: |
-        wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
+        wget -q https://raw.github.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
         source build.sh
 
     - name: Building recovery
