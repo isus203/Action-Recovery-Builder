@@ -71,11 +71,7 @@ jobs:
         sudo apt update
         sudo apt -y upgrade
         sudo apt-get install sshpass -y
-    - name: Install OpenJDK
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'zulu'
-        java-version: '8'
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Install repo
       run: |
@@ -88,7 +84,8 @@ jobs:
       run: |
         git clone https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
         bash vendor/utils/build.sh
-
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+        
     - name: Building recovery
       run: |
         ls
