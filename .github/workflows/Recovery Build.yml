@@ -82,7 +82,7 @@ jobs:
       
     - name: Initialize repo
       run: |
-        git clone https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
+        wget https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
         bash vendor/utils/build.sh
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
         
