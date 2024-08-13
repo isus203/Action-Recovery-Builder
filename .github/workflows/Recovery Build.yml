@@ -22,19 +22,15 @@ on:
       CODENAME:
         description: 'CODENAME'
         required: true
-        default: 'KH7n'
+        default: 'KI7'
       CIRCLE_PROJECT_REPONAME:
         description: 'REPONAME'
         required: true
         default: 'tecno_kh7n_twrp'
-      GitHubName:
+      CIRCLE_PROJECT_USERNAME:
         description: 'USERNAME'
         required: true
         default: 'isus203'
-      GitHubMail:
-        description: 'GitHubMail'
-        required: true
-        default: ''
 
 jobs:
   build:
@@ -51,12 +47,24 @@ jobs:
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
       # That's it! Now use your normal steps
-
+      
+    - name: Initialize workspace
+      run: |
+        mkdir workspace
+        cd workspace
+        echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
+      id: pwd
+      
+    - name: Set Swap Space
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 12
+          
     - name: Prepare the environment
       run: |
         sudo apt update
         sudo apt -y upgrade
-        sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses5 python3
+        sudo apt-get install sshpass -y
     - name: Install OpenJDK
       uses: actions/setup-java@v3
       with:
@@ -72,36 +80,32 @@ jobs:
       
     - name: Initialize repo
       run: |
-        mkdir workspace
-        cd workspace
-        echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
-        git config --global user.name "Nico170420"
-        git config --global user.email "b170420nc@gmail.com"
         wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
         source build.sh
       id: pwd
-
-    - name: Set Swap Space
-      uses: pierotofy/set-swap-space@master
-      with:
-        swap-size-gb: 12
 
     - name: Building recovery
       run: |
         ls
         bash vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }}  ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.CODENAME }} 
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-
+      
+    - name: Check the output directory before uploading
+      run: |
+        ls -al ${{ steps.pwd.outputs.workspace-folder }}/out/target/product/
+        echo
+        ls -al ${{ steps.pwd.outputs.workspace-folder }}/out/target/product/${{ github.event.inputs.CODENAME }}/
+        
     - name: Upload to Release
       uses: softprops/action-gh-release@v1
       with:
-        files: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
-        name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
+        files: | 
+          workspace/out/target/product/${{ github.event.inputs.CODENAME }}/PBRP*.zip
+          workspace/out/target/product/${{ github.event.inputs.CODENAME }}/*.img
+        name: ${{ github.event.inputs.CODENAME }}-${{ github.run_id }}
         tag_name: ${{ github.run_id }}
         body: |
-          Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
-          Device: ${{ github.event.inputs.DEVICE_NAME }}
-          Target: ${{ github.event.inputs.BUILD_TARGET }}.img
+          Device: ${{ github.event.inputs.CODENAME }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
