@@ -84,13 +84,13 @@ jobs:
       
     - name: Initialize repo
       run: |
-        wget -q https://raw.github.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
-        source build.sh
+        git clone https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
+        bash vendor/utils/build.sh
 
     - name: Building recovery
       run: |
         ls
-        bash vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }}  ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.CODENAME }} 
+        bash vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.CODENAME }} 
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Check the output directory before uploading
