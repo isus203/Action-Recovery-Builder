@@ -62,8 +62,9 @@ jobs:
     - name: Prepare the build environment
       run: |
         sudo apt install git aria2 sshpass -y
-        git clone https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
-        bash vendor/utils/build.sh
+        git clone https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb
+        bash vendor_utils/build.sh
+        ls
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Set Swap Space
