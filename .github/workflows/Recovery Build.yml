@@ -1,4 +1,4 @@
-name: Recovery Build
+name: recovery build 
 
 on:
   workflow_dispatch:
@@ -35,7 +35,7 @@ on:
         description: 'GitHubMail'
         required: true
         default: ''
-        
+
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
@@ -43,54 +43,40 @@ jobs:
     permissions:
       contents: write
     steps:
-
+ 
     # You might want to Checkout your repo first, but not mandatory
     - name: Check Out
       uses: actions/checkout@v3
+
     # Cleanup The Actions Workspace Using Custom Composite Run Actions
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
-      # That's it! Now use your normal steps
-      
+
     - name: Initialize workspace
       run: |
         mkdir workspace
         cd workspace
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
-        git config --global user.name "Nico170420"
-        git config --global user.email "b170420nc@gmail.com"
       id: pwd
-      
+
+    - name: Prepare the build environment
+      run: |
+        sudo apt install git aria2 sshpass -y
+        git clone https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
+        bash vendor/utils/build.sh
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
         swap-size-gb: 12
-          
-    - name: Prepare the environment
-      run: |
-        sudo apt update
-        sudo apt -y upgrade
-        sudo apt-get install sshpass -y
-      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
-    - name: Install repo
-      run: |
-        mkdir ~/bin
-        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-        chmod a+x ~/bin/repo
-        sudo ln -sf ~/bin/repo /usr/bin/repo
-      
-    - name: Initialize repo
-      run: |
-        wget https://github.com/PitchBlackRecoveryProject/vendor_utils -b pb vendor/utils
-        bash vendor/utils/build.sh
-      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-        
     - name: Building recovery
       run: |
-        ls
+         ls
         bash vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.CODENAME }} 
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+      continue-on-error: true
       
     - name: Check the output directory before uploading
       run: |
@@ -106,8 +92,6 @@ jobs:
           workspace/out/target/product/${{ github.event.inputs.CODENAME }}/*.img
         name: ${{ github.event.inputs.CODENAME }}-${{ github.run_id }}
         tag_name: ${{ github.run_id }}
-        body: |
-          Device: ${{ github.event.inputs.CODENAME }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        
