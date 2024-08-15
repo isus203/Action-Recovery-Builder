@@ -12,12 +12,12 @@ Orange fox build, TWRP and PBRP
 | `DEVICE_TREE_URL`    | Device address                                    | https://github.com/TeamWin/android_device_asus_I003D         |
 | `DEVICE_TREE_BRANCH` | Device branch                                     | android-12.1                                                 |
 | `DEVICE_PATH`        | Device location                                   | device/asus/I003D                                            |
-
 | `DEVICE_NAME`        | Model name                                        | I003D                                                        |
 | `MAKEFILE_NAME`      | Makefile name                                     | twrp_I003D                                                   |
 | `BUILD_TARGET`       | Build Target Partition (boot/recovery/vendorboot) | recovery                                                     |
 
 -----
+
 
 ## Parameter Description (TWRP)
 
