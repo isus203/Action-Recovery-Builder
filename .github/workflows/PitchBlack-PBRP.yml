@@ -28,7 +28,7 @@ on:
         required: true
         default: 'device/tecno/KH7n'
       VENDOR:
-        description: 'Vendor'
+        description: 'VENDOR'
         required: false
         default: 'tecno'
       DEVICE_NAME:
@@ -83,15 +83,6 @@ jobs:
       with:
         distribution: 'zulu'
         java-version: '8'
-
-    - name: Setup SSH Keys
-      if: ${{ startsWith(github.event.inputs.MANIFEST_URL, 'git@github.com') || 
-          startsWith(github.event.inputs.DEVICE_TREE_URL, 'git@github.com') ||
-          startsWith(github.event.inputs.COMMON_TREE_URL, 'git@github.com') }}
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-          ssh-private-key: |
-            ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Install repo
       run: |
@@ -154,6 +145,7 @@ jobs:
         body: |
           Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
           Device: ${{ github.event.inputs.DEVICE_NAME }}
+          Deploy Type: ${{ github.event.inputs.DEPLOY_TYPE }}
           Target: ${{ github.event.inputs.BUILD_TARGET }}.img
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
