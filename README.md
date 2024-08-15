@@ -9,7 +9,7 @@ Orange fox build, TWRP and PBRP
 | `Deploy Type (BETA/UNOFFICIAL/OFFICIAL)`    |Deploy Type                                      |UNOFFICIAL 
 | `MANIFEST_URL`       | Source address                                    | https://gitlab.com/OrangeFox/sync.git |
 | `MANIFEST_BRANCH`    | Source branch                                     | 12.1                                                    |
-| `DEVICE_TREE_URL`    | Device address                                    | https://github.com/TeamWin/android_device_asus_I003D         |
+| `DEVICE_TREE_URL`    | Device address                                    | https://github.com/OrangeFoxRecovery/android_device_asus_I003D         |
 | `DEVICE_TREE_BRANCH` | Device branch                                     | android-12.1                                                 |
 | `DEVICE_PATH`        | Device location                                   | device/asus/I003D                                            |
 | `DEVICE_NAME`        | Model name                                        | I003D                                                        |
