@@ -28,10 +28,6 @@ on:
         description: 'DEVICE_TREE_BRANCH'
         required: true
         default: 'pbrp_12.1'
-      DEVICE_PATH:
-        description: 'DEVICE_PATH'
-        required: true
-        default: 'device/tecno/KH7n'
       VENDOR:
         description: 'VENDOR'
         required: false
@@ -63,7 +59,7 @@ jobs:
         echo "Manifest Branch: ${{ github.event.inputs.MANIFEST_BRANCH }}"
         echo "Device Tree URL: ${{ github.event.inputs.DEVICE_TREE_URL }}"
         echo "Device Tree Branch: ${{ github.event.inputs.DEVICE_TREE_BRANCH }}"
-        echo "Device Path: ${{ github.event.inputs.DEVICE_PATH }}"
+        echo "Vendor: ${{ github.event.inputs.VENDOR }}"
         echo "Device Name: ${{ github.event.inputs.DEVICE_NAME }}"
         echo "Makefile Name: ${{ github.event.inputs.MAKEFILE_NAME }}"
         echo "Build Target: ${{ github.event.inputs.BUILD_TARGET }}.img"
@@ -113,7 +109,7 @@ jobs:
       
     - name: Clone device tree
       run: |
-        git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
+        git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./device/${{ github.event.inputs.VENDOR }}/${{ github.event.inputs.DEVICE_NAME }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Set Swap Space
