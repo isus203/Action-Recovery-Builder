@@ -7,6 +7,11 @@ on:
         description: 'Deploy Type (TEST/BETA/OFFICIAL)'
         required: true
         default: 'TEST'
+        type: choice
+        options: 
+        - 'TEST'
+        - 'BETA'
+        - 'OFFICIAL' 
       MANIFEST_URL:
         description: 'MANIFEST_URL'
         required: true
