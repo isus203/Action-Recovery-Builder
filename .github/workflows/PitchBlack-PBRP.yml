@@ -134,7 +134,7 @@ jobs:
 
     - name: Assembling the installation archive
       run: |
-        bash vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }}" ${{ github.event.inputs.VENDOR }}" ${{ github.event.inputs.DEVICE_NAME }}"
+        bash vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.DEVICE_NAME }}
 
     - name: Check the output directory before uploading
       run: |
