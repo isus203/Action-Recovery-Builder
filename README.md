@@ -1,3 +1,3 @@
-## Automated Recovery compilation based on Github Action
+## Automated Recovery compilation
 
 Orange fox build, TWRP and PBRP
