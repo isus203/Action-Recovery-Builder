@@ -4,9 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       DEPLOY_TYPE:
-        description: 'Deploy Type (TEST/BETA/OFFICIAL)'
+        description: 'Deploy Type (BETA/UNOFFICIAL/OFFICIAL)'
         required: true
-        default: 'TEST'
+        default: 'UNOFFICIAL'
+        type: choice
+        options: 
+        - 'BETA'
+        - 'UNOFFICIAL'
+        - 'OFFICIAL'
       SYNC_URL:
         description: 'SYNC_URL'
         required: true
