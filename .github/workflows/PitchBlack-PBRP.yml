@@ -29,7 +29,7 @@ on:
         required: true
         default: 'pbrp_12.1'
       VENDOR:
-        description: 'VENDOR'
+        description: 'VENDOR_NAME'
         required: false
         default: 'tecno'
       DEVICE_NAME:
