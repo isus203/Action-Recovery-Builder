@@ -8,7 +8,7 @@
 
 3. issues and Pull Requests may **NOT** get a reply. If you think is really necessary, use email on my profile to contact me
 
-4. Python 2 in Debian (Ubuntu) has been **removed**. If you are working on Android 8.1 and below, use *Recovery Build (Legacy)*
+4. Python 2 in Debian (Ubuntu) has been **removed**.
 
 5. Don't ask any questions about your source code, such as
 	- No rule to make ...
@@ -27,8 +27,6 @@ All contributors
 | `DEVICE_TREE_URL`    | Device address                                    | https://github.com/TeamWin/android_device_asus_I003D         |
 | `DEVICE_TREE_BRANCH` | Device branch                                     | android-12.1                                                 |
 | `DEVICE_PATH`        | Device location                                   | device/asus/I003D                                            |
-| `COMMON_TREE_URL`    | Common tree address                               | https://github.com/TeamWin/android_device_asus_sm8250-common |
-| `COMMON_PATH`        | Common tree location                              | device/asus/sm8250-common                                    |
 | `DEVICE_NAME`        | Model name                                        | I003D                                                        |
 | `MAKEFILE_NAME`      | Makefile name                                     | twrp_I003D                                                   |
 | `BUILD_TARGET`       | Build Target Partition (boot/recovery/vendorboot) | recovery                                                     |
