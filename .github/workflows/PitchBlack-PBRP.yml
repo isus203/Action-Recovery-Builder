@@ -119,7 +119,6 @@ jobs:
 
     - name: Building recovery
       run: |
-        ls -al
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
@@ -127,7 +126,9 @@ jobs:
 
     - name: Assembling the installation archive
       run: |
-        ls -al 
+        ls -al vendor
+        ls -al vendor/utils
+        sudo chmod a+x vendor/utils/pb_deploy.sh
         ./vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.DEVICE_NAME }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
