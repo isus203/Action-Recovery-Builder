@@ -126,8 +126,6 @@ jobs:
 
     - name: Assembling the installation archive
       run: |
-        ls -al vendor
-        
         ls -al vendor/utils
         sudo chmod a+x vendor/utils/pb_deploy.sh
         ./vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.DEVICE_NAME }}
