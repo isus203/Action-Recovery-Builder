@@ -121,14 +121,7 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
-      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-
-    - name: Assembling the installation archive
-      run: |
-        git clone https://github.com/isus203/vendor_utils/blob/d7b7c1d6c0a68f21be1463873440ddb9ba319280/build_zip.sh ./vendor/utils/
-        sudo chmod a+x vendor/utils/build_zip.sh
-        ./vendor/utils/build_zip.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.DEVICE_NAME }}
+        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && mka pbrp && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Check the output directory before uploading
