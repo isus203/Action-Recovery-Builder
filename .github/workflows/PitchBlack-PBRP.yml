@@ -63,7 +63,6 @@ jobs:
         echo "Device Name: ${{ github.event.inputs.DEVICE_NAME }}"
         echo "Makefile Name: ${{ github.event.inputs.MAKEFILE_NAME }}"
         echo "Build Target: ${{ github.event.inputs.BUILD_TARGET }}.img"
-        BOT_API: ${{ secrets.BOT_API }}
         GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
         echo "::endgroup::"
  
