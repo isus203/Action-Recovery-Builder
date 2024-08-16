@@ -1,4 +1,4 @@
-9name: PitchBlack-PBRP
+name: PitchBlack-PBRP
 
 on:
   workflow_dispatch:
@@ -129,6 +129,7 @@ jobs:
         ls -al vendor/utils/
         sudo chmod a+x vendor/utils/pb_deploy.sh
         ./vendor/utils/pb_deploy.sh ${{ github.event.inputs.DEPLOY_TYPE }} ${{ github.event.inputs.VENDOR }} ${{ github.event.inputs.DEVICE_NAME }}
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Check the output directory before uploading
       run: |
