@@ -59,6 +59,8 @@ jobs:
         echo "Manifest Branch: ${{ github.event.inputs.MANIFEST_BRANCH }}"
         echo "Device Tree URL: ${{ github.event.inputs.DEVICE_TREE_URL }}"
         echo "Device Tree Branch: ${{ github.event.inputs.DEVICE_TREE_BRANCH }}"
+        BOT_API: ${{ secrets.BOT_API }}
+        GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
         echo "Vendor: ${{ github.event.inputs.VENDOR }}"
         echo "Device Name: ${{ github.event.inputs.DEVICE_NAME }}"
         echo "Makefile Name: ${{ github.event.inputs.MAKEFILE_NAME }}"
