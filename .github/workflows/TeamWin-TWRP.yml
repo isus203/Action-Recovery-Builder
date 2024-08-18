@@ -6,7 +6,7 @@ on:
       DEPLOY_TYPE:
         description: 'Deploy Type (BETA/UNOFFICIAL/OFFICIAL)'
         required: true
-        default: 'TEST'
+        default: 'UNOFFICIAL'
         type: choice
         options: 
         - 'BETA'
