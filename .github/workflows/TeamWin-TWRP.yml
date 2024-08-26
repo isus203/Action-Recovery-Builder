@@ -43,7 +43,10 @@ on:
       BUILD_TARGET:
         description: 'BUILD_TARGET'
         required: true
-        default: 'boot'
+        options:
+        - boot
+        - recovery
+        - vendor_boot
       RECOVERY_INSTALLER:
         description: Include recovery installer zip
         type: boolean
