@@ -44,7 +44,12 @@ on:
         description: 'BUILD_TARGET'
         required: true
         default: 'boot'
-
+      RECOVERY_INSTALLER:
+        description: Include recovery installer zip
+        type: boolean
+        required: true
+        default: false
+        
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
@@ -123,7 +128,33 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-
+      
+    - name: Include Recovery Installer
+      if: inputs.RECOVERY_INSTALLER == true && inputs.MANIFEST_BRANCH != '6.0' && inputs.BUILD_TARGET != 'vendor_boot'
+      run: |
+        case ${{ inputs.MANIFEST_BRANCH }} in
+          7.1)
+            patchNum=5080
+            ;;
+          8.1)
+            patchNum=5079
+            ;;
+          9.0)
+            patchNum=5037
+            ;;
+          11)
+            patchNum=4964
+            ;;
+          12.1)
+            patchNum=5445
+            ;;
+        esac
+        source build/envsetup.sh
+        repopick -g https://gerrit.twrp.me ${patchNum}
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+      id: recoveryinstaller
+      continue-on-error: true
+      
     - name: Check the output directory before uploading
       run: |
         ls -al workspace/out/target/product/
