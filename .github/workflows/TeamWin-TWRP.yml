@@ -122,7 +122,7 @@ jobs:
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
-    - name: Clone device tree
+    - name: Clone recovery installer
       run: |
         ls -al
         git clone https://github.com/osm0sis/twrp_abtemplate ./bootable/recovery/installer
