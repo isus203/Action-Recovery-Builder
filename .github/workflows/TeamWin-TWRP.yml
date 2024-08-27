@@ -127,6 +127,7 @@ jobs:
         ls -al
         git clone https://github.com/osm0sis/twrp_abtemplate ./bootable/recovery/installer
         ls -al bootable/recovery/installer
+        ls -al build
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Set Swap Space
