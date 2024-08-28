@@ -143,18 +143,9 @@ jobs:
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Include Recovery Installer
-      if: inputs.RECOVERY_INSTALLER == true && inputs.MANIFEST_BRANCH != '6.0' && inputs.BUILD_TARGET != 'vendor_boot'
+      if: inputs.RECOVERY_INSTALLER == true && inputs.MANIFEST_BRANCH != '12.1' && inputs.BUILD_TARGET != 'vendor_boot'
       run: |
         case ${{ inputs.MANIFEST_BRANCH }} in
-          7.1)
-            patchNum=5080
-            ;;
-          8.1)
-            patchNum=5079
-            ;;
-          9.0)
-            patchNum=5037
-            ;;
           11)
             patchNum=4964
             ;;
