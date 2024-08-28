@@ -136,7 +136,7 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        if [ ${{ github.event.inputs.RECOVERY_INSTALLER }} = true ]; then
+        if [ ${{ inputs.RECOVERY_INSTALLER }} = true ]; then
         export USE_RECOVERY_INSTALLER=true
         export RECOVERY_INSTALLER_PATH=bootable/recovery/installer
         fi
