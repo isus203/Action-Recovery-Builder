@@ -124,7 +124,7 @@ jobs:
 
     - name: Clone recovery installer
       run: |
-        git clone https://github.com/tecno-mt6768/twrp_abtemplate ./bootable/recovery/installer
+        git clone https://github.com/tecno-mt6768/twrp_abtemplate ./build/bootable/recovery/installer
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Set Swap Space
