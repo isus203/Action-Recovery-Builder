@@ -139,6 +139,8 @@ jobs:
         if [ ${{ inputs.RECOVERY_INSTALLER }} = true ]; then
         export USE_RECOVERY_INSTALLER=true
         export RECOVERY_INSTALLER_PATH=bootable/recovery/installer
+        else
+        echo "The installer has been disabled"
         fi
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
