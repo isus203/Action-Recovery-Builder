@@ -124,13 +124,13 @@ jobs:
 
     - name: Clone recovery installer
       run: |
-        git clone https://github.com/osm0sis/twrp_abtemplate ./bootable/recovery/installer
+        git clone https://github.com/tecno-mt6768/twrp_abtemplate ./bootable/recovery/installer
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 12
+        swap-size-gb: 50
 
     - name: Building recovery
       run: |
