@@ -124,10 +124,7 @@ jobs:
 
     - name: Clone recovery installer
       run: |
-        ls -al
         git clone https://github.com/osm0sis/twrp_abtemplate ./bootable/recovery/installer
-        ls -al bootable/recovery/installer
-        ls -al build
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Set Swap Space
@@ -139,26 +136,13 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
+        if [ ${{ github.event.inputs.RECOVERY_INSTALLER }} = true ]; then
+        export USE_RECOVERY_INSTALLER=true
+        export RECOVERY_INSTALLER_PATH=bootable/recovery/installer
+        fi
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-      
-    - name: Include Recovery Installer
-      if: inputs.RECOVERY_INSTALLER == true && inputs.MANIFEST_BRANCH != '12.1' && inputs.BUILD_TARGET != 'vendor_boot'
-      run: |
-        case ${{ inputs.MANIFEST_BRANCH }} in
-          11)
-            patchNum=4964
-            ;;
-          12.1)
-            patchNum=5445
-            ;;
-        esac
-        source build/envsetup.sh
-        repopick -g https://gerrit.twrp.me ${patchNum}
-      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-      id: recoveryinstaller
-      continue-on-error: true
-      
+    
     - name: Check the output directory before uploading
       run: |
         ls -al workspace/out/target/product/
