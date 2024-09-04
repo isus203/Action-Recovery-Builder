@@ -157,6 +157,8 @@ jobs:
         echo
         ls -al workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/
         echo
+        ls -al workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}
+        echo
         ls -al workspace/bootable/recovery/installer
   
     - name: Upload to Release
