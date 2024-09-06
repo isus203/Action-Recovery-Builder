@@ -129,7 +129,6 @@ jobs:
         sudo rm -rf .git
         sudo rm -rf .github
         zip -r TWRP_Instaling.zip z .
-        ls -al 
         
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
@@ -156,17 +155,12 @@ jobs:
         ls -al workspace/out/target/product/
         echo
         ls -al workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/
-        echo
-        ls -al workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}
-        echo
-        ls -al workspace/bootable/recovery/installer
   
     - name: Upload to Release
       uses: softprops/action-gh-release@v1
       with:
         files: | 
           workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
-          workspace/bootable/recovery/installer/*.zip
           workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/ramdisk*
         name: TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
         tag_name: ${{ github.run_id }}
