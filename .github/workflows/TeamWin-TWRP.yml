@@ -128,8 +128,6 @@ jobs:
         cd bootable/recovery/installer
         sudo rm -rf .git
         sudo rm -rf .github
-        zip -r TWRP_Instaling.zip z .
-        
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: Set Swap Space
@@ -141,15 +139,19 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        if [ ${{ inputs.RECOVERY_INSTALLER }} = true ]; then
-        export USE_RECOVERY_INSTALLER=true
-        export RECOVERY_INSTALLER_PATH=bootable/recovery/installer
-        else
-        echo "The installer has been disabled"
-        fi
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-    
+
+    - name: Assembling the installer
+      if: |
+        ${{ github.event.inputs.RECOVERY_INSTALLER }} == 'true'
+      run: |
+        mv /out/target/product/${{ github.event.inputs.DEVICE_NAME }}/ramdisk-recovery.cpio /bootable/recovery/installer/ramdisk-recovery.cpio
+        zip -r TWRP_Instaling.zip z .
+        mv  /bootable/recovery/installer/TWRP_Instaling.zip /out/target/product/${{ github.event.inputs.DEVICE_NAME }}/TWRP_Instaling.zip
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+      continue-on-error: true
+      
     - name: Check the output directory before uploading
       run: |
         ls -al workspace/out/target/product/
