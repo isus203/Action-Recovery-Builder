@@ -147,8 +147,8 @@ jobs:
         ${{ github.event.inputs.RECOVERY_INSTALLER }} == 'true'
       run: |
         mv /out/target/product/${{ github.event.inputs.DEVICE_NAME }}/ramdisk-recovery.cpio /bootable/recovery/installer/ramdisk-recovery.cpio
-        zip -r TWRP_Instaling.zip z .
-        mv  /bootable/recovery/installer/TWRP_Instaling.zip /out/target/product/${{ github.event.inputs.DEVICE_NAME }}/TWRP_Instaling.zip
+        zip -r TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip z .
+        mv /bootable/recovery/installer/TWRP_Instaling.zip /out/target/product/${{ github.event.inputs.DEVICE_NAME }}/TWRP_Instaling.zip
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       continue-on-error: true
       
