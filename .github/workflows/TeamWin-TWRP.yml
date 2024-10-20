@@ -150,6 +150,8 @@ jobs:
         cd recovery/installer
         zip -r TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip z .
         cp ./TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip out/target/product/${{ github.event.inputs.DEVICE_NAME }}
+        cd 
+        ls -al
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       continue-on-error: true
       
