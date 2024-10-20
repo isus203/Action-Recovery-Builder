@@ -149,8 +149,7 @@ jobs:
         cp out/target/product/${{ github.event.inputs.DEVICE_NAME }}/./ramdisk-recovery.cpio recovery/installer
         cd recovery/installer
         zip -r TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip z .
-        cd 
-        cp recovery/installer./TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip out/target/product/${{ github.event.inputs.DEVICE_NAME }}
+        cp ./TeamWin-TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip out/target/product/${{ github.event.inputs.DEVICE_NAME }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       continue-on-error: true
       
