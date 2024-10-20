@@ -50,7 +50,7 @@ on:
         - 'recovery'
         - 'vendor_boot'
       RECOVERY_INSTALLER:
-        description: Include recovery installer zip ( it doesn't work yet )
+        description: Include recovery installer zip
         type: boolean
         required: true
         default: false
