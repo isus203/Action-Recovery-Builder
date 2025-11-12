@@ -149,7 +149,7 @@ jobs:
 
     - name: Assembling the installer
       if: |
-        ${{ github.event.inputs.RECOVERY_INSTALLER }} == 'true'
+        github.event.inputs.RECOVERY_INSTALLER != true
       run: |
         cp out/target/product/${{ github.event.inputs.DEVICE_NAME }}/./ramdisk-recovery.cpio recovery/installer
         cd recovery/installer
