@@ -49,11 +49,6 @@ on:
         - 'boot'
         - 'recovery'
         - 'vendor_boot'
-      RECOVERY_INSTALLER:
-        description: Include recovery installer zip
-        type: boolean
-        required: true
-        default: false
         
 jobs:
   build:
@@ -148,14 +143,11 @@ jobs:
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Assembling the installer
-      if: |
-        github.event.inputs.RECOVERY_INSTALLER != true
       run: |
         cp out/target/product/${{ github.event.inputs.DEVICE_NAME }}/./ramdisk-recovery.cpio recovery/installer
         cd recovery/installer
         zip -r TWRP-${{ github.event.inputs.DEPLOY_TYPE }}-${{ github.event.inputs.DEVICE_NAME }}-Instaling.zip z .
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-      continue-on-error: true
       
     - name: Check the output directory before uploading
       run: |
