@@ -88,7 +88,7 @@ jobs:
     - name: Prepare the environment
       run: |
         sudo apt update && sudo apt upgrade -y
-        sudo apt -y install tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev
+        sudo apt -y install tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libsdl1.2-dev
         sudo add-apt-repository universe
         sudo apt -y install libncurses5
         
