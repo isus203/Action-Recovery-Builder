@@ -77,13 +77,6 @@ jobs:
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
       # That's it! Now use your normal steps
-    - name: Identify Vendor
-      run: echo -e "prefix=$(awk -F_ '{print $1}' <<< ${{ github.event.inputs.MAKEFILE_NAME }})" >> ${GITHUB_OUTPUT}
-      id: vendorname
-
-    - name: Identify Device
-      run: echo -e "device=$(grep -oP '(?<=_).*' <<< ${{ github.event.inputs.MAKEFILE_NAME }})" >> ${GITHUB_OUTPUT}
-      id: devicename
       
     - name: Prepare the environment
       run: |
