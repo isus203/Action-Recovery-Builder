@@ -20,6 +20,11 @@ on:
         description: 'MANIFEST_BRANCH'
         required: true
         default: 'shrp-12.1'
+        type: choice
+        options:
+        - 'shrp-12.1'
+        - 'v3_11.0'
+        - 'v3_10.0'
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
