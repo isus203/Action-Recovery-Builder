@@ -20,6 +20,11 @@ on:
         description: 'MANIFEST_BRANCH'
         required: true
         default: 'android-12.1'
+        type: choice
+        options:
+        - 'android-11'
+        - 'android-12.1'
+        - 'android-14'
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
