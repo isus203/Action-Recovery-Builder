@@ -55,8 +55,8 @@ on:
         - 'boot'
         - 'recovery'
         - 'vendor_boot'
-      APPLYPATCH:
-        description: 'Apply diff.patch (true or false)'
+      APPLY_PATCH:
+        description: 'Apply diff.patch'
         required: true
         default: 'no'
         type: choice
@@ -150,7 +150,7 @@ jobs:
         swap-size-gb: 50
     
     - name: Apply custom diff.patch
-      if: github.event.inputs.APPLYPATCH == 'true'
+      if: github.event.inputs.APPLY_PATCH == 'true'
       run: |
         bash ${GITHUB_WORKSPACE}/workspace/${{ github.event.inputs.DEVICE_PATH }}/patches/apply-patches.sh
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
