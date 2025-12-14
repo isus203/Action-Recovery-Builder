@@ -15,7 +15,7 @@ Orange fox build, TWRP and PBRP SHRP
 | `DEVICE_NAME`        | Model name                                        | I003D                                                        |
 | `MAKEFILE_NAME`      | Makefile name                                     | twrp_I003D                                                   |
 | `BUILD_TARGET`       | Build Target Partition (boot/recovery/vendorboot) | recovery                                                     |
-
+| `APPLY_PATCH`       | Apply diff.patch | no                                                     |
 -----
 
 
@@ -33,7 +33,7 @@ Orange fox build, TWRP and PBRP SHRP
 | `MAKEFILE_NAME`      | Makefile name                                     | twrp_I003D                                                   |
 | `BUILD_TARGET`       | Build Target Partition (boot/recovery/vendorboot) | recovery                                                     |
 | `RECOVERY_INSTALLER`       | Include recovery installer zip | false                               |
-
+| `APPLY_PATCH`       | Apply diff.patch | no                                                     |
 -----
 
 ## Parameter Description (PBRP)
@@ -49,7 +49,7 @@ Orange fox build, TWRP and PBRP SHRP
 | `DEVICE_NAME`        | Model name                                        | I003D                                                        |
 | `MAKEFILE_NAME`      | Makefile name                                     | twrp_I003D                                                   |
 | `BUILD_TARGET`       | Build Target Partition (boot/recovery/vendorboot) | recovery                                                     |
-
+| `APPLY_PATCH`       | Apply diff.patch | no                                                     |
 -----
 
 ## Parameter Description (SHRP)
@@ -65,6 +65,6 @@ Orange fox build, TWRP and PBRP SHRP
 | `DEVICE_NAME`        | Model name                                        | I003D                                                        |
 | `MAKEFILE_NAME`      | Makefile name                                     | twrp_I003D                                                   |
 | `BUILD_TARGET`       | Build Target Partition (boot/recovery/vendorboot) | recovery                                                     |
-
+| `APPLY_PATCH`       | Apply diff.patch | no                                                     |
 -----
 
