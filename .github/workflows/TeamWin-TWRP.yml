@@ -19,7 +19,7 @@ on:
       MANIFEST_BRANCH:
         description: 'MANIFEST_BRANCH'
         required: true
-        default: 'twrp-12.1'
+        default: 'twrp-14.1'
         type: choice
         options:
         - 'twrp-11'
@@ -29,7 +29,7 @@ on:
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
-        default: 'https://github.com/tecno-mt6768/tecno_kh7n_recovery'
+        default: 'https://github.com/isus203/tecno_lj9_recovery'
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
@@ -37,15 +37,15 @@ on:
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
-        default: 'device/tecno/KH7n'
+        default: 'device/tecno/LJ9'
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
-        default: 'KH7n'
+        default: 'LJ9'
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME'
         required: true
-        default: 'twrp_KH7n'
+        default: 'twrp_LJ9'
       BUILD_TARGET:
         description: 'BUILD_TARGET'
         required: true
@@ -54,7 +54,7 @@ on:
         options:
         - 'boot'
         - 'recovery'
-        - 'vendor_boot'
+        - 'vendorboot'
       APPLY_PATCH:
         description: 'Apply diff.patch'
         required: true
@@ -160,7 +160,7 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
+        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && mka ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Assembling the installer
